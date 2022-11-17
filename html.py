@@ -1,7 +1,7 @@
 template = """<!DOCTYPE html>
 <html lang = "en">
 <head>
-    <title> Office Hour < /title>
+    <title> Office Hour </title>
     <meta HTTP-EQUIV = "CACHE-CONTROL" CONTENT = "NO-CACHE">
     <meta HTTP-EQUIV = "PRAGMA" CONTENT = "NO-CACHE">
     <meta charset = "utf-8">

@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-from argparse import ArgumentParser
-from os import path, makedirs
-from shutil import rmtree
+
+from os import path, makedirs, chmod
 from re import compile
+from shutil import rmtree
 from sys import exit
+
 from html import template
 
 
 def main(form: str, sheet: str, html_path: str = "~/html/oh"):
     # validate urls:
     form_m = compile(
-        r"^(https?:\/\/)?(docs.google.com\/forms\/d\/.*)")
+        r"^(https?:\/\/)?(forms.gle\/|docs.google.com\/forms\/d\/.*)")
     if not form_m.match(form):
         exit("form url is not valid")
     form_url = form_m.sub(r"https://\2", form)
@@ -23,9 +24,10 @@ def main(form: str, sheet: str, html_path: str = "~/html/oh"):
     print(info)
     html_path = path.expanduser(html_path)
     rmtree(html_path, ignore_errors=True)
-    makedirs(html_path, mode=0o755, exist_ok=True)
+    makedirs(html_path, mode=0o711, exist_ok=True)
     with open(path.join(html_path, "index.html"), "w+") as index:
         index.write(template.format(info[0], info[1], info[2]))
+    chmod(path.join(html_path, "index.html"), mode=0o644)
 
 
 if __name__ == "__main__":

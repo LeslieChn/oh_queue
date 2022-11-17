@@ -28,7 +28,7 @@ def main(form: str, sheet: str, html_path: str = "~/html/oh"):
     with open(path.join(html_path, "index.html"), "w+") as index:
         index.write(template.format(info[0], info[1], info[2]))
     chmod(path.join(html_path, "index.html"), mode=0o644)
-    chmod(path(html_path), mode=0o711)
+    chmod(path.join(html_path), mode=0o711)
 
 
 if __name__ == "__main__":
